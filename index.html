@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+î<!DOCTYPE html>
 <html>
 <head>
   <title>Paystack Payment Form</title>
@@ -44,7 +44,7 @@
         callback: function(response) {
           // Handle the transaction callback
           //console.log(response);
-          document.getElementById('demo').innerHTML = `Status: ${response.status}`
+          document.getElementById('demo').innerHTML = response.status
           // You can perform additional actions here, such as updating your database
         },
         onClose: function() {
