@@ -38,7 +38,7 @@
       var handler = PaystackPop.setup({
         key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d',
         email: email,
-        amount: amount + delivery, // Convert amount to kobo
+        amount: (amount + delivery) *100, // Convert amount to kobo
         currency: 'NGN',
         metadata: {
           custom_fields: [
