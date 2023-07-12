@@ -36,7 +36,7 @@
           custom_fields: [
             {
               display_name: "Full Name",
-              variable_name: "full_name",
+              variable_name: "full_name",s
               value: name
             }
           ]
@@ -44,7 +44,7 @@
         callback: function(response) {
           // Handle the transaction callback
           //console.log(response);
-          document.getElementById('demo').innerHTML = response.status
+          document.getElementById('demo').innerHTML = `Status: ${response.status}, Message:${response.message}`
           // You can perform additional actions here, such as updating your database
         },
         onClose: function() {
