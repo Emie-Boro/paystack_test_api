@@ -1,4 +1,4 @@
-î<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Paystack Payment Form</title>
@@ -18,7 +18,7 @@
     <br>
     <button type="submit">Pay Now</button>
   </form>
-  <p id="demo"></p>
+
   <script>
     document.getElementById('payment-form').addEventListener('submit', function(event) {
       event.preventDefault();
@@ -36,15 +36,14 @@
           custom_fields: [
             {
               display_name: "Full Name",
-              variable_name: "full_name",s
+              variable_name: "full_name",
               value: name
             }
           ]
         },
         callback: function(response) {
           // Handle the transaction callback
-          //console.log(response);
-          document.getElementById('demo').innerHTML = response.status
+          console.log(response);
           // You can perform additional actions here, such as updating your database
         },
         onClose: function() {
@@ -58,3 +57,4 @@
   </script>
 </body>
 </html>
+
