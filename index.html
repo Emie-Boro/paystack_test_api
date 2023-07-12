@@ -16,6 +16,13 @@
     <label for="amount">Amount:</label>
     <input type="number" id="amount" required>
     <br>
+    <div class="form-group">
+    <label for="delivery">Delivery Address</label>
+    <select id="delivery">
+     <option value="3000" selected>Yenagoa (3000)</option>
+     <option value="5000">PortHarcourt (5000)</option>
+    </select>
+    </div>
     <button type="submit">Pay Now</button>
   </form>
 
@@ -26,11 +33,12 @@
       var name = document.getElementById('name').value;
       var email = document.getElementById('email').value;
       var amount = document.getElementById('amount').value;
+      var delivery = document.getElementById('delivery').value;
 
       var handler = PaystackPop.setup({
         key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d',
         email: email,
-        amount: amount * 100, // Convert amount to kobo
+        amount: amount + delivery * 100, // Convert amount to kobo
         currency: 'NGN',
         metadata: {
           custom_fields: [
