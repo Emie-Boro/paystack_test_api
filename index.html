@@ -33,12 +33,12 @@
       var name = document.getElementById('name').value;
       var email = document.getElementById('email').value;
       var amount = document.getElementById('amount').value;
-      var delivery = document.getElementById('delivery').value;
+      var delivery = document.getElementById('delivery').value + amount;
 
       var handler = PaystackPop.setup({
         key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d',
         email: email,
-        amount: amount * 100, // Convert amount to kobo
+        amount: delivery * 100, // Convert amount to kobo
         currency: 'NGN',
         metadata: {
           custom_fields: [
