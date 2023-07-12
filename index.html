@@ -1,48 +1,59 @@
-<form id="paymentForm">
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" id="email-address" required />
-  </div>
-  <div class="form-group">
-    <label for="amount">Amount</label>
-    <input type="tel" id="amount" required />
-  </div>
-  <div class="form-group">
-    <label for="first-name">First Name</label>
-    <input type="text" id="first-name" />
-  </div>
-  <div class="form-group">
-    <label for="last-name">Last Name</label>
-    <input type="text" id="last-name" />
-  </div>
-  <div class="form-submit">
-    <button type="submit" onclick="payWithPaystack()"> Pay </button>
-  </div>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paystack Payment Form</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+  <h1>Paystack Payment Form</h1>
+  <form id="payment-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <br>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" required>
+    <br>
+    <button type="submit">Pay Now</button>
+  </form>
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
-   
-const paymentForm = document.getElementById('paymentForm');
-paymentForm.addEventListener("submit", payWithPaystack, false);
+  <script>
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-function payWithPaystack(e) {
-  e.preventDefault();
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var amount = document.getElementById('amount').value;
 
-  let handler = PaystackPop.setup({
-    key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d', // Replace with your public key
-    email: document.getElementById("email-address").value,
-    amount: document.getElementById("amount").value * 100,
-    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-    // label: "Optional string that replaces customer email"
-    onClose: function(){
-      alert('Window closed.');
-    },
-    callback: function(response){
-      let message = 'Payment complete! Reference: ' + response.reference;
-      alert(message);
-    }
-  });
+      var handler = PaystackPop.setup({
+        key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d',
+        email: email,
+        amount: amount * 100, // Convert amount to kobo
+        currency: 'NGN',
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Full Name",
+              variable_name: "full_name",
+              value: name
+            }
+          ]
+        },
+        callback: function(response) {
+          // Handle the transaction callback
+          console.log(response);
+          // You can perform additional actions here, such as updating your database
+        },
+        onClose: function() {
+          // Handle when the Popup is closed
+          console.log('Popup closed');
+        }
+      });
 
-  handler.openIframe();
-</script>
+      handler.openIframe();
+    });
+  </script>
+</body>
+</html>
