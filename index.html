@@ -57,7 +57,7 @@
           // console.log(response);
           // You can perform additional actions here, such as updating your database
           paymentReference += response.reference
-          console.log(paymentReference)
+          document.body.innerHTML = paymentReference
           // window.location.href = 'https://google.com'
         },
         onClose: function() {
