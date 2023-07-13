@@ -56,7 +56,7 @@
           // Handle the transaction callback
           // console.log(response);
           // You can perform additional actions here, such as updating your database
-          paymentReference += response.reference
+          paymentReference = response.reference
           document.body.innerHTML = paymentReference
           // window.location.href = 'https://google.com'
         },
