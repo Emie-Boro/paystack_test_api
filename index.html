@@ -35,14 +35,14 @@
       var amount = parseFloat(document.getElementById('amount').value);
       var delivery = parseFloat(document.getElementById('delivery').value);
       var totalAmount = amount + delivery + 500
-      var paymentReference = ''+Math.floor((Math.random() * 1000000000) + 1)
+      let paymentReference
 
       var handler = PaystackPop.setup({
         key: 'pk_test_dffbc956ff8810bb230033eab900f37da620a69d',
         email: email,
         amount: totalAmount * 100, // Convert amount to kobo
         currency: 'NGN',
-        ref: paymentReference,
+        
         metadata: {
           custom_fields: [
             {
@@ -56,7 +56,8 @@
           // Handle the transaction callback
           // console.log(response);
           // You can perform additional actions here, such as updating your database
-          document.body.innerHTML = response.reference
+          paymentReference += response.reference
+          console.log(paymentReference)
           // window.location.href = 'https://google.com'
         },
         onClose: function() {
